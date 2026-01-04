@@ -1,0 +1,15 @@
+apiVersion: v2
+name: go-app
+description: A Helm chart for Go IP Geolocation application
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+keywords:
+  - go
+  - geolocation
+  - api
+  - prometheus
+home: https://github.com/your-org/go-app
+maintainers:
+  - name: Your Name
+    email: your-email@example.com

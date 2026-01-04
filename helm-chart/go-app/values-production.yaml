@@ -1,0 +1,52 @@
+replicaCount: 1
+
+image:
+  repository: registry-17250252bc-aria.apps.ir-central1.arvancaas.ir/go-app
+  tag: "latest"
+  pullPolicy: Always
+
+imagePullSecrets:
+  - name: aria-registry-secret
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  hosts:
+    - host: app.titimod.ir
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+  #  - secretName: app-tls
+  #    hosts:
+  #      - app.titimod.ir
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+
+config:
+  database:
+    host: "postgress-cluster-rw.production-db.svc.cluster.local"
+    name: "app"
+    user: "app"
+
+secrets:
+  ipstackApiKey: "eW91ci1pcHN0YWNrLWFwaS1rZXk="  
+  dbPassword: "Nmc3YnpnWXVwZjZHc1NsT0dDbk40SWxOZWRScEtFU1RzRmN5YmZCd2JMYVQwYWxNMXUwMU9oRnNEMUl1NXppVg=="
+
+serviceMonitor:
+  enabled: true
