@@ -50,3 +50,6 @@ secrets:
 
 serviceMonitor:
   enabled: true
+
+deployment:
+  enabled: true

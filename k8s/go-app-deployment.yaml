@@ -1,12 +1,11 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: go-app
   namespace: production
   labels:
     app: go-app
 spec:
-  serviceName: go-app-service
   replicas: 1
   selector:
     matchLabels:
@@ -92,3 +91,4 @@ spec:
             initialDelaySeconds: 5
             periodSeconds: 5
             failureThreshold: 30
+

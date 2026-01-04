@@ -119,7 +119,11 @@ serviceMonitor:
   path: /metrics
   port: metrics
 
-# StatefulSet configuration
-statefulSet:
+# Deployment configuration
+deployment:
   enabled: true
+
+# StatefulSet configuration (optional, for backward compatibility)
+statefulSet:
+  enabled: false
   serviceName: ""  # Will use the service name if empty
